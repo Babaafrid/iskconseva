@@ -37,9 +37,42 @@
         // Call a function to update the content based on the new language
         updateContent(newLanguage);
       }
+      function toggleReadMore() {
+    var remainingParas = document.getElementById("remaining-paras");
+    var readMoreBtn = document.getElementById("read-more-btn");
+
+    // Check if the remaining paragraphs are currently displayed
+    if (remainingParas.style.display === "none") {
+      remainingParas.style.display = "block"; // Show the paragraphs
+      readMoreBtn.style.display = "none"; // Hide the button
+    }
+  }
+
+  let currentImageIndex = 0;
+  const images = [
+    '/assets/images/gallery/annadhan-1.jpg',
+    '/assets/images/gallery/annadhan-3.jpg',
+    '/assets/images/gallery/annadhan-4.jpg',
+    '/assets/images/gallery/annadhan-5.jpg',
+  ];
+
+  function changeImage() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    document.getElementById('carouselImage').src = images[currentImageIndex];
+  }
+
+  setInterval(changeImage, 5000);
+
+  $(document).ready(function(){
+    $('.goto-section').click(function(){
+        var sectionId = $(this).data('section');
+        $('html, body').animate({
+            scrollTop: $("#" + sectionId).offset().top
+        }, 1000);
+    });
+});
   
       function updateContent(language) {
-        // Define language-specific content
         var content = {
           'en': {
             'buttonText': 'తెలుగు',
@@ -171,8 +204,8 @@
                   
                   <div class="header-right">
                     <div class="cart">
-                        <a href="https://www.iskconvijayawada.org/donate" class="btn-primary-fill pill-btn">Donate</a>
-                        <button class="btn-primary-fill pill-btn" id="toggleButton" onclick="toggleLanguage()">తెలుగు</button>
+                        <button class="btn-primary-fill pill-btn">Donate</a>
+                        <!-- <button class="btn-primary-fill pill-btn" id="toggleButton" onclick="toggleLanguage()">తెలుగు</button> -->
                     </div>
                   </div>
                 </div>
@@ -195,19 +228,35 @@
             <div class="d-flex flex-column align-items-center">
               <!-- Hero Image for Desktop -->
               <div class="hero-image position-relative d-none d-lg-block">
-                <img src="assets/images/gallery/bg-1.jpg" alt="img" class="w-100 wow fadeInUp" data-wow-delay="0.1s" style="object-fit: cover; height: 100%; width: 100%;">
+                <img src="assets/images/gallery/bg-2.jpeg" alt="img" class="w-100 wow fadeInUp" data-wow-delay="0.1s" style="object-fit: cover; height: 100%; width: 100%;">
               </div>
               <!-- Hero Image for Mobile -->
               <div class="hero-image-mobile d-lg-none">
-                <img src="assets/images/gallery/bg-1.jpg" alt="img" class="w-100 wow fadeInUp" data-wow-delay="0.1s" style="object-fit: cover; height: 100%; width: 100%;">
+                <img src="assets/images/gallery/bg-2.jpeg" alt="img" class="w-100 wow fadeInUp" data-wow-delay="0.1s" style="object-fit: cover; height: 100%; width: 100%;">
               </div>
               <br>
               <br>
-              <div class="col-xxl-6 col-xl-6 col-lg-8 my-auto text-center">
+              <div class="col-xxl-10 col-xl-6 col-lg-8 my-auto">
                 <div class="hero-caption-one mb-20">
-                  <h1 id="heading1" class="title font-700 wow fadeInUp" data-wow-delay="0.1s" style="font-family: 'Your Desired Font', sans-serif; color: #333; font-size: 36px; line-height: 1.2; margin-bottom: 10px;">Anna Daan Seva for Ayodhya Rama Mandir Opening</h1>
-                  <h4 class="key-title font-700 mb-20 wow fadeInUp" data-wow-delay="0.0s" style="font-family: 'Your Desired Font', sans-serif; color: #ff4040; font-size: 24px; line-height: 1.2; margin-bottom: 20px;">24 Jan - 23 Feb</h4>
-                  <p id="para1" class="pera wow fadeInUp" data-wow-delay="0.3s" style="font-family: 'Your Desired Font', sans-serif; color: #666; font-size: 20px; line-height: 1.6;">Join us in the auspicious Ayodhya Rama Mandir Opening Seva by making a kind contribution to provide prasadam to devotees, sadhus, and visitors during this auspicious occasion of the temple opening of Lord Ramachandra at Ayodhya - the birthplace of Lord Rama.</p>
+                  <p id="para1" class="pera wow fadeInUp" data-wow-delay="0.3s" style="font-size: 15px; line-height: 1.5;">
+                    <b>
+                      RAMNAVAMI - The birth of Lord Rama is celebrated as Rama Navami. The Appearance of Sri Rama is a momentous occasion, symbolizing the epitome of sublime values cherished across human culture and civilization. Ram Navami embodies a festival of jubilation, bestowing upon devotees true happiness and joy. Lord Rama, synonymous with 'bliss', offers solace and contentment to all who remember and pray to Him.
+                    </b>
+                  </p>
+                  <p class="pera wow fadeInUp" data-wow-delay="0.3s" style="font-size: 15px; line-height: 1.5;">
+                    The long-cherished dream of the Shri Ram Mandir at Shri Ram Janmabhoomi has come true in our lifetime. The tireless hard work and complete determination of devoted Ram bhaktas paved the way for the construction of the mandir. The spectacular Pran Pratishtha Mahotsava of Shri Ram Lalla has brought unlimited joy in the hearts of every devout Hindu across the globe. Following the grand inauguration of the Shri Ram Mandir, lakhs of enthusiastic devotees are taking darshan of Ram Lalla every day.
+                  </p>
+                  <!-- Read More button -->
+                  <button onclick="toggleReadMore()" id="read-more-btn" class="btn-primary-fill">Read More</button>
+                  <!-- Hidden paragraphs -->
+                  <div id="remaining-paras" style="display: none;">
+                    <p class="pera wow fadeInUp" data-wow-delay="0.3s" style="font-size: 15px; line-height: 1.5;">
+                      ISKCON has established a camp in Ayodhya at Tedhi Bazar Road, Ranopali, with a sophisticated kitchen. Every day, for a month, thousands of plates of hot, hygienic, and sumptuous prasadam were served to visitors.
+                    </p>
+                    <p class="pera wow fadeInUp" data-wow-delay="0.3s" style="font-size: 15px; line-height: 1.5;">
+                      We have witnessed how the whole world has welcomed Ram Lalla to the marvelous throne in the palatial marble mandir constructed at His place of birth. After welcoming Lord Ram to reside at His birthplace with the Prana Prathista of Ram Lalla at Shri Ram Janmabhoomi, we will celebrate the first birthday of Lord Ram in the form of Shri Ram Navami. Lord Ramachandra, widely known as Maryada Purushottam, is the embodiment of ideal behavior with the highest standard of righteous, ethical, and moral codes of conduct.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -222,21 +271,18 @@
 
       <div class="our-event-three">
         <div class="slider center-slider-active">
-          <!-- Single -->
-          <div class="clip event-image-overlay ml-15 mr-15">
-            <a href=""><img class="main-img" src="assets/images/gallery/slide1.jpg" alt="image"></a>
+          <div style="width: 500px; height: 500px; overflow: hidden;" class="clip event-image-overlay ml-15 mr-15">
+            <a href=""><img src="assets/images/gallery/slide1.jpg" alt="image" style="width: 100%; height: 100%; object-fit: cover;"></a>
           </div>
-          <!-- Single -->
-          <div class="clip event-image-overlay ml-15 mr-15">
-            <a href=""> <img class="main-img" src="assets/images/gallery/slide2.jpg" alt="image"></a>
+          <div style="width: 500px; height: 500px; overflow: hidden;" class="clip event-image-overlay ml-15 mr-15">
+            <a href=""><img src="assets/images/gallery/slide2.jpg" alt="image" style="width: 100%; height: 100%; object-fit: cover;"></a>
           </div>
-          <!-- Single -->
-          <div class="clip event-image-overlay ml-15 mr-15">
-            <a href=""><img class="main-img" src="assets/images/gallery/slide4.jpg" alt="image"></a>
+          <div style="width: 500px; height: 500px; overflow: hidden;" class="clip event-image-overlay ml-15 mr-15">
+            <a href=""><img src="assets/images/gallery/slide4.jpg" alt="image" style="width: 100%; height: 100%; object-fit: cover;"></a>
           </div>
-          <div class="clip event-image-overlay ml-15 mr-15">
-            <a href=""><img class="main-img" src="assets/images/gallery/slide5.jpg" alt="image"></a>
-          </div>
+          <div style="width: 500px; height: 500px; overflow: hidden;" class="clip event-image-overlay ml-15 mr-15">
+            <a href=""><img src="assets/images/gallery/slide5.jpg" alt="image" style="width: 100%; height: 100%; object-fit: cover;"></a>
+          </div>          
         </div>
       </div>
 
@@ -251,18 +297,18 @@
             <div class="col-lg-7 my-auto">
               <!-- Section Tittle -->
               <div class="section-tittle mb-50">
-                <p id="para2" class="pera" style="font-size: 25px;">Scriptures mention food (prasadam) distribution as one of the most charitable acts. Food (prasadam) distribution is a tradition that dates back to ancient times. Prasadam is infused with blessings. It not only nourishes the body but it energizes the soul one with unlimited blessings of Lord Rama</p>
-                <br>
-                <p id="para3" class="pera" style="font-size: 25px;">Please donate generously and do not miss this unique opportunity to receive the unlimited blessings of Lord Rama. Contribute to help us make this occasion very special.</p>
+                <h4 class="key-title font-700 mb-20 wow fadeInUp" data-wow-delay="0.0s" style="font-family: 'Your Desired Font', sans-serif; color: #ff4040; font-size: 24px; line-height: 1.2; margin-bottom: 20px;">Annadhan Seva</h4>
+                <p id="para2" class="pera" style="font-size: 20px;">The two-day grand festival will include prasadam seva to all visitors. Every day, we are expecting about 8,000 people to participate in the festival. Shri Ram Navami, the most auspicious occasion of Lord Ramachandra's birthday, is the best opportunity to please the Lord by rendering service. Distribution of prasadam, the mercy of Lord Ramachandra, to every visitor to the temple, is a very important service during Shri Ram Navami and extremely pleases the Lord. We plan to provide a full plate of prasadam consisting of puri, subji, rice, dahl, and halwa to every participant. A plate of prasadam will cost Rs. 50/-</p>
             </div>
-            
+            <h3 id="heading2" class="title" style="text-align: center; font-style: italic; color: blue;"><b>Your modest act of charity has the power to make a difference and bring joy to the faces of those in need.</b></h3>
             </div>
             <div class="col-lg-5">
               <div class="position-relative">
-                  <video width="100%" controls>
+                  <!-- <video width="100%" controls>
                       <source src="assets/images/gallery/video.mp4" type="video/mp4">
                       Your browser does not support the video tag.
-                  </video>
+                  </video> -->
+                  <img class="img-cover" width="400px" src="./assets/images/gallery/about-annadhan.jpg">
               </div>
             </div>
           </div>
@@ -270,138 +316,105 @@
       </section>
 
       <!-- helpful area S t a r t-->
-      <section class="helpful-area">
+      <section  class="helpful-area">
         <div class="container">
           <div class="row gy-24">
             <div class="col-xl-2 col-md-6 col-lg-6">
               <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 10 plates</h4>
-                  <p>Prize: ₹1,000/-</p>
-                  <br>
-                  <br>
-                  <a href="https://rzp.io/l/mBez7Ey"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 col-lg-6">
-              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 20 plates</h4>
-                  <p>Prize: ₹2,000/-</p>
-                  <br>
-                  <br>
-                  <a href="https://rzp.io/l/XITtFXH"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 col-lg-6">
-              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 30 plates</h4>
-                  <p>Prize: ₹3,000/-</p>
-                  <br>
-                  <br>
-                  <a href="https://rzp.io/l/MUuNMvxyGo"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 col-lg-6">
-              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 50 plates</h4>
-                  <p>Prize: ₹5,000/-</p>
-                  <br>
-                  <br>
-                  <a href="https://rzp.io/l/YiRovGjkO"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 col-lg-6">
-              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 100 plates</h4>
-                  <p>Prize: ₹10,000/-</p>
-                  <br>
-                  <br>
-                  <a href="https://rzp.io/l/0dbzhuWU"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 col-lg-6">
-              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 200 plates</h4>
-                  <p>Prize: ₹20,000/-</p>
-                  <br>
-                  <br>
-                  <a href="https://rzp.io/l/wmxC1GY"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 col-lg-6">
-              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 300 plates</h4>
-                  <p>Prize: ₹30,000/-</p>
-                  <br>
-                  <br>
-                  <a href="https://rzp.io/l/J57R62I"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6 col-lg-6">
-              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
-                <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 500 plates</h4>
+                  <h4 class="caption-title">Feed 1000 People</h4>
                   <p>Prize: ₹50,000/-</p>
                   <br>
                   <br>
-                  <a href="https://rzp.io/l/NsPVNKg4ls"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
+                  <a href="https://pages.razorpay.com/pl_NPkcc5VcVnThLl/view"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
                 </div>
               </div>
             </div>
             <div class="col-xl-2 col-md-6 col-lg-6">
               <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 1000 plates</h4>
-                  <p>Prize: ₹1,00,000/-</p>
+                  <h4 class="caption-title">Feed 500 People</h4>
+                  <p>Prize: ₹25,000/-</p>
                   <br>
                   <br>
-                  <a href="https://rzp.io/l/pS6SRfj0b"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
+                  <a href="https://pages.razorpay.com/pl_NPkacePY6Fhr8C/view"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
                 </div>
               </div>
             </div>
             <div class="col-xl-2 col-md-6 col-lg-6">
               <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 2000 plates</h4>
-                  <p>Prize: ₹2,00,000/-</p>
+                  <h4 class="caption-title">Feed 300 People</h4>
+                  <p>Prize: ₹15,000/-</p>
                   <br>
                   <br>
-                  <a href="https://rzp.io/l/lc36tp7UxK"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
+                  <a href="https://pages.razorpay.com/pl_NPkXy0WLiJYwCX/view"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
                 </div>
               </div>
             </div>
             <div class="col-xl-2 col-md-6 col-lg-6">
               <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 3000 plates</h4>
-                  <p>Prize: ₹3,00,000/-</p>
+                  <h4 class="caption-title">Feed 200 People</h4>
+                  <p>Prize: ₹10,000/-</p>
                   <br>
                   <br>
-                  <a href=" https://rzp.io/l/SRACPUE"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
+                  <a href="https://pages.razorpay.com/pl_NPkVb2M750sdde/view"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
                 </div>
               </div>
             </div>
             <div class="col-xl-2 col-md-6 col-lg-6">
               <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
                 <div class="helpful-card-caption">
-                  <h4 class="caption-title">Donate for 5000 plates</h4>
-                  <p>Prize: ₹5,00,000/-</p>
+                  <h4 class="caption-title">Feed 100 People</h4>
+                  <p>Prize: ₹5,000/-</p>
                   <br>
                   <br>
-                  <a href="https://rzp.io/l/mVJsAIEgQA"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
+                  <a href="https://pages.razorpay.com/pl_NPkTGyDpBX99JN/view"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-6 col-lg-6">
+              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="helpful-card-caption">
+                  <h4 class="caption-title">Feed 50 People</h4>
+                  <p>Prize: ₹2,500/-</p>
+                  <br>
+                  <br>
+                  <a href="https://pages.razorpay.com/pl_NPkQystyOLpnAq/view"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-6 col-lg-6">
+              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="helpful-card-caption">
+                  <h4 class="caption-title">Feed 30 People</h4>
+                  <p>Prize: ₹1,500/-</p>
+                  <br>
+                  <br>
+                  <a href="https://pages.razorpay.com/pl_NPkNdEiadbwcV1/view"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-6 col-lg-6">
+              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="helpful-card-caption">
+                  <h4 class="caption-title">Feed 20 People</h4>
+                  <p>Prize: ₹1,000/-</p>
+                  <br>
+                  <br>
+                  <a href="https://pages.razorpay.com/pl_NPiEMFrfgloMRC/view"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-6 col-lg-6">
+              <div class="helpful-card h-calc  wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="helpful-card-caption">
+                  <h4 class="caption-title">Feed 10 People</h4>
+                  <p>Prize: ₹500/-</p>
+                  <br>
+                  <br>
+                  <a href="https://pages.razorpay.com/pl_NPi9amOJNxbJFz/view"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
                 </div>
               </div>
             </div>
@@ -409,6 +422,10 @@
         </div>
       </section>
       <!-- End-of helpful-->
+
+      <div class="image-carousel" style="float: right;">
+        <img id="carouselImage" src="./assets/images/gallery/annadhan-1.jpg" style="width:100%; max-width: 400px; display: block; object-fit: cover; margin-right: 60px;">
+    </div>
 
       <section class="donation-section top-bottom-padding2">
         <div class="container">
@@ -420,8 +437,8 @@
                   
                   <div class="payment-section">
                     <div class="select-payment">
-                      <h4 class="title" style="font-size: 30px;">Or, Rama Mandir Seva of your choice</h4>
-                      <a href="https://rzp.io/l/7Rxvsowq"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
+                      <h4 class="title" style="font-size: 30px;">Donate of your choice</h4>
+                      <a href="https://pages.razorpay.com/pl_NPkrVvh9xSENon/view"  class="btn-primary-fill hero-btn wow fadeInUp" data-wow-delay="0.3s">Donate Now</a>
                     </div>
                   </div>
                 </div>
@@ -433,12 +450,11 @@
         <br>
         <div class="container">
           <div class="row gy-20">
-            <h3 id="heading2" class="title" style="text-align: center; color: blue;"><b>AVAIL 80G BENEFITS ON THE DONATIONS MADE TO ISKCON</b></h3>
+            <!-- <h3 id="heading2" class="title" style="text-align: center; color: blue;"><b>AVAIL 80G BENEFITS ON THE DONATIONS MADE TO ISKCON</b></h3> -->
             <br>
             <br>
             <br>
             <h4 id="heading3" class="title"><b>Donate via NEFT/RTGS/IMPS/PayTm/UPI</b></h4>
-              <br>
               <br>
               <img src="assets/images/gallery/bg.png" alt="img" class="w-100">
               <hr>
@@ -451,14 +467,8 @@
         <br>
         <div class="container">
           <div class="row gy-20">
-            <h3 id="heading4" class="title" style="text-align: center;"><b>The UP State Administration has provided ISKCON 4 acre land to provide high-quality free prasadam distribution to the lakhs of visitors attending the function. ISKCON is preparing to distribute 6 lakh full plates of prasadam over 1 month. Also would be distributing over a lakh Bhagavad Gita freely to the visitors</b></h3>
+            <h4 id="heading4" class="title" style="text-align: center;"><b>Let us welcome Lord Ram into our lives by getting inspiration from His ideal behavior and by imbibing His exemplary qualities. ISKCON Vijayawada will celebrate Shri Ram Navami on April 16 and 17, 2024.</b></h4>
             <hr>
-            <h3 id="heading5" class="title" style="text-align: center;"><b>You are invited to honor prasadam at our ISKCON Free Annadaan kshetra if you visit Ayodhya during this period</b></h3>
-            <hr>
-            <h3 id="heading6" class="title" style="text-align: center; color: red;"><b>Need help in donation or have a query? </b></h3>
-            <hr>
-            <p id="para5" style="font-size: 25px;">If you want to know other ways you can contribute or volunteer, or have questions about your donation, or any other query, feel free to contact us between 10:00 am to 5:00 PM every day except on Sunday and festivals. We will be glad to assist you.</p>
-            
             <!-- Button to open email -->
             <div style="text-align: center;">
               <button id="btn1" onclick="openEmail()" class="btn-primary-fill" style="margin: 20px auto; display: inline-block;">
@@ -507,7 +517,7 @@
                 </div>
                 <!-- Right button -->
                 <ul class="cart">
-                  <li class="cart-list"><a href="https://www.iskconvijayawada.org/donate" class="donate-btn">Donate</a></li>
+                  <li class="cart-list"><button class="btn-primary-fill">Donate</a></li>
                 </ul>
               </div>
             </div>

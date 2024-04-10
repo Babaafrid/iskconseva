@@ -17965,7 +17965,7 @@ input[type=number] {
 }
 
 .hero-caption-one {
-  max-width: 562px;
+  /* max-width: 562px; */
 }
 .hero-caption-one .short-dec {
   font-size: 28px;
@@ -18019,9 +18019,8 @@ input[type=number] {
   }
 }
 .hero-caption-one .pera {
-  font-size: 16px;
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: var(--secondary-title);
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
