@@ -15139,7 +15139,7 @@ input[type=number] {
 .loading-page .counter .text {
   font-size: 40px;
   font-weight: 100;
-  color: var(--primary);
+  color: var(--tertiary);
 }
 .loading-page .counter .number {
   color: white;
@@ -15153,7 +15153,7 @@ input[type=number] {
 }
 .loading-page .counter .line {
   display: block;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--tertiary);
   width: 0;
 }
 
@@ -15189,8 +15189,8 @@ input[type=number] {
 }
 .btn-primary-fill:hover {
   background: none;
-  border: 1px solid var(--primary-btn);
-  color: var(--primary-btn);
+  border: 1px solid #ff4040;
+  color: #ff4040;
 }
 .btn-primary-fill i {
   font-size: 18px;
@@ -15202,13 +15202,13 @@ input[type=number] {
   top: 4px;
 }
 .btn-primary-fill:focus {
-  border-color: var(--primary-btn);
-  background: var(--primary-btn);
+  border-color: #ff4040;
+  background: #ff4040;
   color: var(--white) !important;
 }
 .btn-primary-fill:focus:active {
-  border-color: var(--primary-btn);
-  background: var(--primary-btn);
+  border-color: #ff4040;
+  background: #ff4040;
   color: var(--white);
 }
 
